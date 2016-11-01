@@ -85,6 +85,22 @@ c3_chart_internal_fn.findValueInJson = function (object, path) {
     }
     return object;
 };
+c3_chart_internal_fn.convertItemsToData = function (data) {
+    var new_rows = [];
+    var new_row = {};
+    var keys = data.cols;
+    for (var j = 0; j < data.rows.length; j++) {
+        new_row = {};
+        for (var i = 0; i < data.cols.length; i++) {
+            if (isUndefined(data.rows[j][i])) {
+                throw new Error("Source data is missing a component at (" + j + "," + i + ")!");
+            }
+            new_row[keys[i]] = data.rows[j][i];
+        }
+        new_rows.push(new_row);
+    }
+    return new_rows;
+};
 c3_chart_internal_fn.convertRowsToData = function (rows) {
     var keys = rows[0], new_row = {}, new_rows = [], i, j;
     for (i = 1; i < rows.length; i++) {

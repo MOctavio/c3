@@ -46,6 +46,9 @@ c3_chart_internal_fn.loadFromArgs = function (args) {
     else if (args.json) {
         $$.load($$.convertDataToTargets($$.convertJsonToData(args.json, args.keys)), args);
     }
+    else if (args.items) {
+        $$.load($$.convertDataToTargets($$.convertItemsToData(args.items)), args);
+    }
     else if (args.rows) {
         $$.load($$.convertDataToTargets($$.convertRowsToData(args.rows)), args);
     }
